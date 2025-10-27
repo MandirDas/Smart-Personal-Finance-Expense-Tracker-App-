@@ -63,7 +63,8 @@ class DatabaseHelper {
   // ==================== TRANSACTION CRUD ====================
 
   /// Create a new transaction
-  Future<model.Transaction> createTransaction(model.Transaction transaction) async {
+  Future<model.Transaction> createTransaction(
+      model.Transaction transaction) async {
     final db = await instance.database;
     final id = await db.insert('transactions', transaction.toMap());
     return transaction.copyWith(id: id);
@@ -107,7 +108,8 @@ class DatabaseHelper {
   }
 
   /// Read transactions by category
-  Future<List<model.Transaction>> readTransactionsByCategory(String category) async {
+  Future<List<model.Transaction>> readTransactionsByCategory(
+      String category) async {
     final db = await instance.database;
     final result = await db.query(
       'transactions',
@@ -172,7 +174,8 @@ class DatabaseHelper {
   /// Read all budgets
   Future<List<Budget>> readAllBudgets() async {
     final db = await instance.database;
-    final result = await db.query('budgets', orderBy: 'month DESC, category ASC');
+    final result =
+        await db.query('budgets', orderBy: 'month DESC, category ASC');
     return result.map((map) => Budget.fromMap(map)).toList();
   }
 

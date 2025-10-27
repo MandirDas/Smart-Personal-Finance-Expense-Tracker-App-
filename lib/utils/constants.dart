@@ -93,7 +93,7 @@ enum BudgetAlertLevel {
 BudgetAlertLevel getBudgetAlertLevel(double spent, double budget) {
   if (budget == 0) return BudgetAlertLevel.safe;
   final percentage = (spent / budget) * 100;
-  
+
   if (percentage > 100) return BudgetAlertLevel.exceeded;
   if (percentage >= 80) return BudgetAlertLevel.warning;
   return BudgetAlertLevel.safe;

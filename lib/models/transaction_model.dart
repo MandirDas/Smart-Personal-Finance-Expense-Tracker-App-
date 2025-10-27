@@ -62,7 +62,8 @@ class Transaction extends Equatable {
   }
 
   @override
-  List<Object?> get props => [id, amount, category, date, description, isIncome];
+  List<Object?> get props =>
+      [id, amount, category, date, description, isIncome];
 
   @override
   String toString() {
