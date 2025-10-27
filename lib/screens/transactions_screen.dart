@@ -5,6 +5,7 @@ import '../blocs/transaction/transaction_event.dart';
 import '../blocs/transaction/transaction_state.dart';
 import '../models/transaction_model.dart';
 import '../widgets/transaction_list_item.dart';
+import '../services/export_service.dart';
 import 'add_transaction_screen.dart';
 
 /// Screen showing all transactions
@@ -31,6 +32,43 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('All Transactions'),
+        actions: [
+          BlocBuilder<TransactionBloc, TransactionState>(
+            builder: (context, state) {
+              if (state is TransactionLoaded && state.transactions.isNotEmpty) {
+                return IconButton(
+                  icon: const Icon(Icons.file_download),
+                  tooltip: 'Export to CSV',
+                  onPressed: () async {
+                    try {
+                      await ExportService.exportTransactionsToCSV(
+                        state.transactions,
+                      );
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Transactions exported successfully'),
+                            backgroundColor: Colors.green,
+                          ),
+                        );
+                      }
+                    } catch (e) {
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Export failed: ${e.toString()}'),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                      }
+                    }
+                  },
+                );
+              }
+              return const SizedBox();
+            },
+          ),
+        ],
       ),
       body: BlocConsumer<TransactionBloc, TransactionState>(
         listener: (context, state) {

@@ -44,8 +44,18 @@ DateTime parseMonth(String monthDisplay) {
 /// Get month name
 String getMonthName(int month) {
   const months = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
   ];
   return months[month - 1];
 }
@@ -60,16 +70,16 @@ String? validateAmount(String? value) {
   if (value == null || value.isEmpty) {
     return 'Please enter an amount';
   }
-  
+
   final amount = double.tryParse(value);
   if (amount == null) {
     return 'Please enter a valid number';
   }
-  
+
   if (amount <= 0) {
     return 'Amount must be greater than 0';
   }
-  
+
   return null;
 }
 

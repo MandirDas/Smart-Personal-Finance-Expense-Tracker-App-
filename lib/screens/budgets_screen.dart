@@ -111,9 +111,11 @@ class _BudgetsScreenState extends State<BudgetsScreen> {
   Widget _buildBudgetCard(BuildContext context, budget, BudgetStatus? status) {
     if (status == null) return const SizedBox();
 
-    final alertLevel = getBudgetAlertLevel(status.spent, status.budget.budgetAmount);
+    final alertLevel =
+        getBudgetAlertLevel(status.spent, status.budget.budgetAmount);
     final alertColor = getBudgetAlertColor(alertLevel);
-    final categoryColor = TransactionCategories.getCategoryColor(budget.category);
+    final categoryColor =
+        TransactionCategories.getCategoryColor(budget.category);
     final categoryIcon = TransactionCategories.getCategoryIcon(budget.category);
 
     return Card(
@@ -157,19 +159,21 @@ class _BudgetsScreenState extends State<BudgetsScreen> {
                       children: [
                         Text(
                           budget.category,
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
                         Text(
                           formatMonthDisplay(budget.month),
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall
-                                    ?.color
-                                    ?.withOpacity(0.6),
-                              ),
+                          style:
+                              Theme.of(context).textTheme.bodySmall?.copyWith(
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall
+                                        ?.color
+                                        ?.withOpacity(0.6),
+                                  ),
                         ),
                       ],
                     ),
@@ -179,10 +183,11 @@ class _BudgetsScreenState extends State<BudgetsScreen> {
                     children: [
                       Text(
                         formatCurrency(status.spent),
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.bold,
-                              color: alertColor,
-                            ),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: alertColor,
+                                ),
                       ),
                       Text(
                         'of ${formatCurrency(status.budget.budgetAmount)}',

@@ -20,7 +20,7 @@ class AddBudgetScreen extends StatefulWidget {
 class _AddBudgetScreenState extends State<AddBudgetScreen> {
   final _formKey = GlobalKey<FormState>();
   final _amountController = TextEditingController();
-  
+
   String? _selectedCategory;
   String _selectedMonth = getCurrentMonth();
 
@@ -151,7 +151,8 @@ class _AddBudgetScreenState extends State<AddBudgetScreen> {
                       children: [
                         Icon(
                           TransactionCategories.getCategoryIcon(category),
-                          color: TransactionCategories.getCategoryColor(category),
+                          color:
+                              TransactionCategories.getCategoryColor(category),
                           size: 20,
                         ),
                         const SizedBox(width: 8),
@@ -177,9 +178,11 @@ class _AddBudgetScreenState extends State<AddBudgetScreen> {
                   prefixIcon: Icon(Icons.attach_money),
                   border: OutlineInputBorder(),
                   hintText: '0.00',
-                  helperText: 'Maximum amount you want to spend in this category',
+                  helperText:
+                      'Maximum amount you want to spend in this category',
                 ),
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
                 validator: validateAmount,
               ),
               const SizedBox(height: 16),
@@ -275,13 +278,13 @@ class _AddBudgetScreenState extends State<AddBudgetScreen> {
   List<DropdownMenuItem<String>> _generateMonthOptions() {
     final List<DropdownMenuItem<String>> items = [];
     final now = DateTime.now();
-    
+
     // Generate options for current month and next 11 months
     for (int i = 0; i < 12; i++) {
       final date = DateTime(now.year, now.month + i, 1);
       final monthKey = formatMonth(date);
       final monthDisplay = formatMonthDisplay(monthKey);
-      
+
       items.add(
         DropdownMenuItem(
           value: monthKey,
@@ -289,7 +292,7 @@ class _AddBudgetScreenState extends State<AddBudgetScreen> {
         ),
       );
     }
-    
+
     return items;
   }
 }

@@ -25,7 +25,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
   ) async {
     try {
       emit(const TransactionLoading());
-      
+
       final transactions = await _databaseHelper.readAllTransactions();
       final totalIncome = await _databaseHelper.getTotalIncome();
       final totalExpenses = await _databaseHelper.getTotalExpenses();
@@ -49,13 +49,14 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
   ) async {
     try {
       emit(const TransactionLoading());
-      
-      final transactions = await _databaseHelper.readTransactionsByMonth(event.month);
-      
+
+      final transactions =
+          await _databaseHelper.readTransactionsByMonth(event.month);
+
       // Calculate totals for the month
       double totalIncome = 0;
       double totalExpenses = 0;
-      
+
       for (var transaction in transactions) {
         if (transaction.isIncome) {
           totalIncome += transaction.amount;
@@ -63,7 +64,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
           totalExpenses += transaction.amount;
         }
       }
-      
+
       final balance = totalIncome - totalExpenses;
 
       emit(TransactionLoaded(
@@ -84,12 +85,12 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
   ) async {
     try {
       emit(const TransactionOperationInProgress());
-      
+
       await _databaseHelper.createTransaction(event.transaction);
-      
+
       // Reload all transactions
       add(const LoadTransactions());
-      
+
       emit(const TransactionOperationSuccess('Transaction added successfully'));
     } catch (e) {
       emit(TransactionError('Failed to add transaction: ${e.toString()}'));
@@ -103,13 +104,14 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
   ) async {
     try {
       emit(const TransactionOperationInProgress());
-      
+
       await _databaseHelper.updateTransaction(event.transaction);
-      
+
       // Reload all transactions
       add(const LoadTransactions());
-      
-      emit(const TransactionOperationSuccess('Transaction updated successfully'));
+
+      emit(const TransactionOperationSuccess(
+          'Transaction updated successfully'));
     } catch (e) {
       emit(TransactionError('Failed to update transaction: ${e.toString()}'));
     }
@@ -122,7 +124,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
   ) async {
     try {
       await _databaseHelper.deleteTransaction(event.id);
-      
+
       // Reload all transactions
       add(const LoadTransactions());
     } catch (e) {
@@ -137,7 +139,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
   ) async {
     try {
       await _databaseHelper.createTransaction(event.transaction);
-      
+
       // Reload all transactions
       add(const LoadTransactions());
     } catch (e) {

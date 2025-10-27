@@ -19,8 +19,10 @@ class TransactionListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final categoryColor = TransactionCategories.getCategoryColor(transaction.category);
-    final categoryIcon = TransactionCategories.getCategoryIcon(transaction.category);
+    final categoryColor =
+        TransactionCategories.getCategoryColor(transaction.category);
+    final categoryIcon =
+        TransactionCategories.getCategoryIcon(transaction.category);
 
     return Dismissible(
       key: Key(transaction.id.toString()),
@@ -44,7 +46,8 @@ class TransactionListItem extends StatelessWidget {
           builder: (BuildContext context) {
             return AlertDialog(
               title: const Text('Confirm Delete'),
-              content: const Text('Are you sure you want to delete this transaction?'),
+              content: const Text(
+                  'Are you sure you want to delete this transaction?'),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.of(context).pop(false),
@@ -52,7 +55,8 @@ class TransactionListItem extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () => Navigator.of(context).pop(true),
-                  child: const Text('Delete', style: TextStyle(color: Colors.red)),
+                  child:
+                      const Text('Delete', style: TextStyle(color: Colors.red)),
                 ),
               ],
             );
@@ -114,7 +118,8 @@ class TransactionListItem extends StatelessWidget {
                         Text(
                           transaction.description,
                           style: theme.textTheme.bodySmall?.copyWith(
-                            color: theme.textTheme.bodySmall?.color?.withOpacity(0.6),
+                            color: theme.textTheme.bodySmall?.color
+                                ?.withOpacity(0.6),
                           ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -123,7 +128,8 @@ class TransactionListItem extends StatelessWidget {
                       Text(
                         formatDate(transaction.date),
                         style: theme.textTheme.bodySmall?.copyWith(
-                          color: theme.textTheme.bodySmall?.color?.withOpacity(0.5),
+                          color: theme.textTheme.bodySmall?.color
+                              ?.withOpacity(0.5),
                         ),
                       ),
                     ],

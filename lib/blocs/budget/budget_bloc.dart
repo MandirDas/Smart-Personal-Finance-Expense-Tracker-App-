@@ -25,20 +25,20 @@ class BudgetBloc extends Bloc<BudgetEvent, BudgetState> {
   ) async {
     try {
       emit(const BudgetLoading());
-      
+
       final currentMonth = DateFormat('yyyy-MM').format(DateTime.now());
       final budgets = await _databaseHelper.readBudgetsByMonth(currentMonth);
-      final expensesByCategory = await _databaseHelper.getExpensesByCategory(currentMonth);
-      
+      final expensesByCategory =
+          await _databaseHelper.getExpensesByCategory(currentMonth);
+
       // Calculate budget statuses
       final Map<String, BudgetStatus> budgetStatuses = {};
       for (var budget in budgets) {
         final spent = expensesByCategory[budget.category] ?? 0.0;
         final remaining = budget.budgetAmount - spent;
-        final percentage = budget.budgetAmount > 0 
-            ? (spent / budget.budgetAmount) * 100 
-            : 0.0;
-        
+        final percentage =
+            budget.budgetAmount > 0 ? (spent / budget.budgetAmount) * 100 : 0.0;
+
         budgetStatuses[budget.category] = BudgetStatus(
           budget: budget,
           spent: spent,
@@ -63,19 +63,19 @@ class BudgetBloc extends Bloc<BudgetEvent, BudgetState> {
   ) async {
     try {
       emit(const BudgetLoading());
-      
+
       final budgets = await _databaseHelper.readBudgetsByMonth(event.month);
-      final expensesByCategory = await _databaseHelper.getExpensesByCategory(event.month);
-      
+      final expensesByCategory =
+          await _databaseHelper.getExpensesByCategory(event.month);
+
       // Calculate budget statuses
       final Map<String, BudgetStatus> budgetStatuses = {};
       for (var budget in budgets) {
         final spent = expensesByCategory[budget.category] ?? 0.0;
         final remaining = budget.budgetAmount - spent;
-        final percentage = budget.budgetAmount > 0 
-            ? (spent / budget.budgetAmount) * 100 
-            : 0.0;
-        
+        final percentage =
+            budget.budgetAmount > 0 ? (spent / budget.budgetAmount) * 100 : 0.0;
+
         budgetStatuses[budget.category] = BudgetStatus(
           budget: budget,
           spent: spent,
@@ -100,12 +100,12 @@ class BudgetBloc extends Bloc<BudgetEvent, BudgetState> {
   ) async {
     try {
       emit(const BudgetOperationInProgress());
-      
+
       await _databaseHelper.createBudget(event.budget);
-      
+
       // Reload budgets
       add(const LoadBudgets());
-      
+
       emit(const BudgetOperationSuccess('Budget added successfully'));
     } catch (e) {
       emit(BudgetError('Failed to add budget: ${e.toString()}'));
@@ -119,12 +119,12 @@ class BudgetBloc extends Bloc<BudgetEvent, BudgetState> {
   ) async {
     try {
       emit(const BudgetOperationInProgress());
-      
+
       await _databaseHelper.updateBudget(event.budget);
-      
+
       // Reload budgets
       add(const LoadBudgets());
-      
+
       emit(const BudgetOperationSuccess('Budget updated successfully'));
     } catch (e) {
       emit(BudgetError('Failed to update budget: ${e.toString()}'));
@@ -138,7 +138,7 @@ class BudgetBloc extends Bloc<BudgetEvent, BudgetState> {
   ) async {
     try {
       await _databaseHelper.deleteBudget(event.id);
-      
+
       // Reload budgets
       add(const LoadBudgets());
     } catch (e) {

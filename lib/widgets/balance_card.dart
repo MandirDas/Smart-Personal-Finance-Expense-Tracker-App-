@@ -82,7 +82,8 @@ class BalanceCard extends StatelessWidget {
     );
   }
 
-  Widget _buildStatItem(String label, double amount, IconData icon, Color color) {
+  Widget _buildStatItem(
+      String label, double amount, IconData icon, Color color) {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(

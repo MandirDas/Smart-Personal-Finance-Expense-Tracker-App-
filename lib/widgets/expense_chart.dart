@@ -15,7 +15,7 @@ class ExpenseChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    
+
     if (expensesByCategory.isEmpty) {
       return Card(
         margin: const EdgeInsets.all(16),
@@ -100,8 +100,8 @@ class ExpenseChart extends StatelessWidget {
                           return Padding(
                             padding: const EdgeInsets.only(top: 8),
                             child: Text(
-                              category.length > 6 
-                                  ? '${category.substring(0, 6)}.' 
+                              category.length > 6
+                                  ? '${category.substring(0, 6)}.'
                                   : category,
                               style: theme.textTheme.bodySmall,
                             ),
@@ -143,7 +143,8 @@ class ExpenseChart extends StatelessWidget {
                     final index = entry.key;
                     final category = entry.value.key;
                     final amount = entry.value.value;
-                    final color = TransactionCategories.getCategoryColor(category);
+                    final color =
+                        TransactionCategories.getCategoryColor(category);
 
                     return BarChartGroupData(
                       x: index,

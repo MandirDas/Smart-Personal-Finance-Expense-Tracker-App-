@@ -21,7 +21,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
   final _formKey = GlobalKey<FormState>();
   final _amountController = TextEditingController();
   final _descriptionController = TextEditingController();
-  
+
   String? _selectedCategory;
   DateTime _selectedDate = DateTime.now();
   bool _isIncome = false;
@@ -147,7 +147,8 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           label: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.arrow_upward, size: 16, color: Colors.red),
+                              Icon(Icons.arrow_upward,
+                                  size: 16, color: Colors.red),
                               SizedBox(width: 4),
                               Text('Expense'),
                             ],
@@ -167,7 +168,8 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           label: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.arrow_downward, size: 16, color: Colors.green),
+                              Icon(Icons.arrow_downward,
+                                  size: 16, color: Colors.green),
                               SizedBox(width: 4),
                               Text('Income'),
                             ],
@@ -195,7 +197,8 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                   border: OutlineInputBorder(),
                   hintText: '0.00',
                 ),
-                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
                 validator: validateAmount,
               ),
               const SizedBox(height: 16),
@@ -213,7 +216,8 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       children: [
                         Icon(
                           TransactionCategories.getCategoryIcon(category),
-                          color: TransactionCategories.getCategoryColor(category),
+                          color:
+                              TransactionCategories.getCategoryColor(category),
                           size: 20,
                         ),
                         const SizedBox(width: 8),

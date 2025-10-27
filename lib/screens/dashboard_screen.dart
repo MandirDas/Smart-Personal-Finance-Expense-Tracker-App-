@@ -117,7 +117,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Widget _buildDashboard(BuildContext context, TransactionLoaded state) {
     final currentMonth = getCurrentMonth();
-    
+
     return FutureBuilder<Map<String, double>>(
       future: DatabaseHelper.instance.getExpensesByCategory(currentMonth),
       builder: (context, snapshot) {
@@ -148,16 +148,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       children: [
                         Text(
                           'Recent Transactions',
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.titleLarge?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
                         TextButton(
                           onPressed: () async {
                             await Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const TransactionsScreen(),
+                                builder: (context) =>
+                                    const TransactionsScreen(),
                               ),
                             );
                             _refreshData();
@@ -185,14 +187,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           const SizedBox(height: 16),
                           Text(
                             'No transactions yet',
-                            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
                                   color: Theme.of(context).disabledColor,
                                 ),
                           ),
                           const SizedBox(height: 8),
                           Text(
                             'Tap + to add your first transaction',
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
                                   color: Theme.of(context).disabledColor,
                                 ),
                           ),
@@ -217,8 +225,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                           },
                         );
                       },
-                      childCount: state.transactions.length > 10 
-                          ? 10 
+                      childCount: state.transactions.length > 10
+                          ? 10
                           : state.transactions.length,
                     ),
                   ),
