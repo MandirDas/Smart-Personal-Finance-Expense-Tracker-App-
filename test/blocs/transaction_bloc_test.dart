@@ -114,7 +114,8 @@ void main() {
       act: (bloc) => bloc.add(const LoadTransactions()),
       expect: () => [
         const TransactionLoading(),
-        const TransactionError('Failed to load transactions: Exception: Database error'),
+        const TransactionError(
+            'Failed to load transactions: Exception: Database error'),
       ],
     );
   });

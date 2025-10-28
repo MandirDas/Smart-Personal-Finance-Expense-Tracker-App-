@@ -68,7 +68,8 @@ void main() {
         isIncome: false,
       );
 
-      final updated = transaction.copyWith(amount: 150.0, description: 'Dinner');
+      final updated =
+          transaction.copyWith(amount: 150.0, description: 'Dinner');
 
       expect(updated.amount, 150.0);
       expect(updated.description, 'Dinner');

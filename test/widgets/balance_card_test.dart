@@ -4,7 +4,8 @@ import 'package:finance_tracker_app/widgets/balance_card.dart';
 
 void main() {
   group('BalanceCard Widget Tests', () {
-    testWidgets('should display total balance correctly', (WidgetTester tester) async {
+    testWidgets('should display total balance correctly',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
@@ -21,7 +22,8 @@ void main() {
       expect(find.text('\$400.00'), findsOneWidget);
     });
 
-    testWidgets('should display income and expenses', (WidgetTester tester) async {
+    testWidgets('should display income and expenses',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
@@ -40,7 +42,8 @@ void main() {
       expect(find.text('\$600.00'), findsOneWidget);
     });
 
-    testWidgets('should display negative balance correctly', (WidgetTester tester) async {
+    testWidgets('should display negative balance correctly',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
@@ -70,10 +73,12 @@ void main() {
       );
 
       final container = tester.widget<Container>(
-        find.descendant(
-          of: find.byType(Card),
-          matching: find.byType(Container),
-        ).first,
+        find
+            .descendant(
+              of: find.byType(Card),
+              matching: find.byType(Container),
+            )
+            .first,
       );
 
       expect(container.decoration, isA<BoxDecoration>());
