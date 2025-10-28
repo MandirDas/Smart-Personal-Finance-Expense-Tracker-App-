@@ -58,6 +58,14 @@ class DatabaseHelper {
         UNIQUE(category, month)
       )
     ''');
+
+    // Create settings table
+    await db.execute('''
+      CREATE TABLE settings (
+        key TEXT PRIMARY KEY,
+        value TEXT NOT NULL
+      )
+    ''');
   }
 
   // ==================== TRANSACTION CRUD ====================

@@ -1,13 +1,17 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart';
+import '../../services/database_helper.dart';
 import 'theme_event.dart';
 import 'theme_state.dart';
 
 /// BLoC for managing theme (light/dark mode)
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
-  ThemeBloc() : super(ThemeState.initial()) {
+  final DatabaseHelper _databaseHelper;
+
+  ThemeBloc({DatabaseHelper? databaseHelper})
+      : _databaseHelper = databaseHelper ?? DatabaseHelper.instance,
+        super(ThemeState.initial()) {
     on<ToggleTheme>(_onToggleTheme);
     on<SetTheme>(_onSetTheme);
     on<LoadTheme>(_onLoadTheme);
@@ -44,17 +48,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   /// Save theme preference to database
   Future<void> _saveThemePreference(ThemeMode themeMode) async {
     try {
-      final dbPath = await getDatabasesPath();
-      final path = join(dbPath, 'finance_tracker.db');
-      final db = await openDatabase(path);
-
-      // Create settings table if it doesn't exist
-      await db.execute('''
-        CREATE TABLE IF NOT EXISTS settings (
-          key TEXT PRIMARY KEY,
-          value TEXT NOT NULL
-        )
-      ''');
+      final db = await _databaseHelper.database;
 
       // Save theme preference
       await db.insert(
@@ -70,9 +64,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   /// Load theme preference from database
   Future<ThemeMode> _loadThemePreference() async {
     try {
-      final dbPath = await getDatabasesPath();
-      final path = join(dbPath, 'finance_tracker.db');
-      final db = await openDatabase(path);
+      final db = await _databaseHelper.database;
 
       final result = await db.query(
         'settings',
