@@ -1,10 +1,12 @@
 # Smart Personal Finance & Expense Tracker
 
-A production-ready Flutter application for managing personal finances with budgets, expense tracking, and analytics. Built with clean architecture, offline-first design, and comprehensive testing.
-
-[![Flutter Version](https://img.shields.io/badge/Flutter-3.x+-blue.svg)](https://flutter.dev/)
-[![Dart Version](https://img.shields.io/badge/Dart-3.x+-blue.svg)](https://dart.dev/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+## Pre- Requirements
+ **Flutter Version** : 3.27.0
+ **Dart Version** : 3.6.0
+ **Kotlin Version** : 1.8.22
+ **Java Version** : temurin-19.0.2
+ **Gradle Version** : 8.3
+ **AGP Version** : 8.1.0
 
 ## 📱 Features
 

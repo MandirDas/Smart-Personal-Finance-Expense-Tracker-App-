@@ -115,7 +115,7 @@ class ExpenseChart extends StatelessWidget {
                         reservedSize: 40,
                         getTitlesWidget: (value, meta) {
                           return Text(
-                            '\$${value.toInt()}',
+                            '₹${value.toInt()}',
                             style: theme.textTheme.bodySmall,
                           );
                         },

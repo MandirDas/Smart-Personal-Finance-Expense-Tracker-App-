@@ -188,12 +188,17 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                 ),
               ),
               const SizedBox(height: 16),
+              Text(
+                'Amount',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 4),
               // Amount Field
               TextFormField(
                 controller: _amountController,
                 decoration: const InputDecoration(
-                  labelText: 'Amount',
-                  prefixText: '\$ ',
+                  // labelText: 'Amount',
+                  prefixText: '₹ ',
                   border: OutlineInputBorder(),
                   hintText: '0.00',
                 ),
@@ -201,12 +206,18 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                     const TextInputType.numberWithOptions(decimal: true),
                 validator: validateAmount,
               ),
-              const SizedBox(height: 16),
+              // const SizedBox(height: 16),
+              const SizedBox(height: 8),
+              Text(
+                'Category',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 4),
               // Category Dropdown
               DropdownButtonFormField<String>(
                 value: _selectedCategory,
                 decoration: const InputDecoration(
-                  labelText: 'Category',
+                  // labelText: 'Category',
                   border: OutlineInputBorder(),
                 ),
                 items: categories.map((category) {
@@ -233,13 +244,19 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                 },
                 validator: validateCategory,
               ),
-              const SizedBox(height: 16),
+              // const SizedBox(height: 16),
+              const SizedBox(height: 8),
+              Text(
+                'Date',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 4),
               // Date Picker
               InkWell(
                 onTap: _selectDate,
                 child: InputDecorator(
                   decoration: const InputDecoration(
-                    labelText: 'Date',
+                    // labelText: 'Date',
                     border: OutlineInputBorder(),
                     suffixIcon: Icon(Icons.calendar_today),
                   ),
@@ -248,12 +265,18 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 16),
+              // const SizedBox(height: 16),
+              const SizedBox(height: 8),
+              Text(
+                'Description (Optional)',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 4),
               // Description Field
               TextFormField(
                 controller: _descriptionController,
                 decoration: const InputDecoration(
-                  labelText: 'Description (Optional)',
+                  // labelText: 'Description (Optional)',
                   border: OutlineInputBorder(),
                   hintText: 'Add a note...',
                 ),

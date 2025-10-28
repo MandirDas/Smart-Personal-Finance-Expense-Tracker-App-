@@ -174,7 +174,7 @@ class _AddBudgetScreenState extends State<AddBudgetScreen> {
                 controller: _amountController,
                 decoration: const InputDecoration(
                   labelText: 'Budget Amount',
-                  prefixText: '\$ ',
+                  prefixText: '₹ ',
                   prefixIcon: Icon(Icons.attach_money),
                   border: OutlineInputBorder(),
                   hintText: '0.00',
