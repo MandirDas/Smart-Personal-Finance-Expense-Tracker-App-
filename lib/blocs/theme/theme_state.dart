@@ -7,9 +7,9 @@ class ThemeState extends Equatable {
 
   const ThemeState({required this.themeMode});
 
-  /// Initial light theme
+  /// Initial system default theme
   factory ThemeState.initial() {
-    return const ThemeState(themeMode: ThemeMode.light);
+    return const ThemeState(themeMode: ThemeMode.system);
   }
 
   /// Copy with new theme mode

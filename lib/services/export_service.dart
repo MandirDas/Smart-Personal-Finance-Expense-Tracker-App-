@@ -27,10 +27,24 @@ class ExportService {
       // Convert to CSV string
       final String csv = const ListToCsvConverter().convert(csvData);
 
-      // Get temporary directory
-      final directory = await getTemporaryDirectory();
+      String dir;
+      if (Platform.isAndroid) {
+        dir = "/storage/emulated/0/Download/";
+      } else {
+        final downloadsDir = await getDownloadsDirectory();
+        if (downloadsDir != null) {
+          dir = downloadsDir.path;
+        } else {
+          dir = (await getApplicationDocumentsDirectory()).path;
+        }
+      }
+
+      String p1 = (await getApplicationDocumentsDirectory()).path;
+      String p2 = (await getDownloadsDirectory())!.path;
+      String p3 = (await getExternalStorageDirectory())!.path;
+      print('Paths: $p1, $p2, $p3');
       final path =
-          '${directory.path}/transactions_${DateFormat('yyyyMMdd_HHmmss').format(DateTime.now())}.csv';
+          '$dir/transactions_${DateFormat('yyyyMMdd_HHmmss').format(DateTime.now())}.csv';
 
       // Write to file
       final file = File(path);

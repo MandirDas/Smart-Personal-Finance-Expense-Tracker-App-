@@ -132,14 +132,23 @@ class DashboardWrapper extends StatelessWidget {
             ),
             BlocBuilder<ThemeBloc, ThemeState>(
               builder: (context, state) {
-                return SwitchListTile(
-                  secondary: Icon(
-                    state.isDarkMode ? Icons.dark_mode : Icons.light_mode,
-                  ),
-                  title: const Text('Dark Mode'),
-                  value: state.isDarkMode,
-                  onChanged: (value) {
-                    context.read<ThemeBloc>().add(const ToggleTheme());
+                String themeText = 'Light';
+                IconData themeIcon = Icons.light_mode;
+                
+                if (state.themeMode == ThemeMode.dark) {
+                  themeText = 'Dark';
+                  themeIcon = Icons.dark_mode;
+                } else if (state.themeMode == ThemeMode.system) {
+                  themeText = 'System Default';
+                  themeIcon = Icons.brightness_auto;
+                }
+                
+                return ListTile(
+                  leading: Icon(themeIcon),
+                  title: const Text('Theme'),
+                  subtitle: Text(themeText),
+                  onTap: () {
+                    Navigator.pop(context);
                   },
                 );
               },

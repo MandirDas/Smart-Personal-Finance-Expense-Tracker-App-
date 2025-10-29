@@ -76,10 +76,11 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
         final value = result.first['value'] as String;
         if (value == 'ThemeMode.dark') return ThemeMode.dark;
         if (value == 'ThemeMode.light') return ThemeMode.light;
+        if (value == 'ThemeMode.system') return ThemeMode.system;
       }
     } catch (e) {
       // Silently fail - return default theme
     }
-    return ThemeMode.light;
+    return ThemeMode.system;
   }
 }

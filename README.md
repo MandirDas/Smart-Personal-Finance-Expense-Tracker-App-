@@ -1,12 +1,12 @@
 # Smart Personal Finance & Expense Tracker
 
 ## Pre- Requirements
- **Flutter Version** : 3.27.0
- **Dart Version** : 3.6.0
- **Kotlin Version** : 1.8.22
- **Java Version** : temurin-19.0.2
- **Gradle Version** : 8.3
- **AGP Version** : 8.1.0
+- **Flutter Version** : 3.27.0
+- **Dart Version** : 3.6.0
+- **Kotlin Version** : 1.8.22
+- **Java Version** : temurin-19.0.2
+- **Gradle Version** : 8.3
+- **AGP Version** : 8.1.0
 
 ## 📱 Features
 

@@ -5,6 +5,9 @@ import '../blocs/transaction/transaction_event.dart';
 import '../blocs/transaction/transaction_state.dart';
 import '../blocs/budget/budget_bloc.dart';
 import '../blocs/budget/budget_event.dart';
+import '../blocs/theme/theme_bloc.dart';
+import '../blocs/theme/theme_event.dart';
+import '../blocs/theme/theme_state.dart';
 import '../widgets/balance_card.dart';
 import '../widgets/transaction_list_item.dart';
 import '../widgets/expense_chart.dart';
@@ -41,6 +44,94 @@ class _DashboardScreenState extends State<DashboardScreen> {
       appBar: AppBar(
         title: const Text('Finance Tracker'),
         actions: [
+          // Theme Mode Selector
+          BlocBuilder<ThemeBloc, ThemeState>(
+            builder: (context, themeState) {
+              return PopupMenuButton<ThemeMode>(
+                icon: Icon(
+                  themeState.themeMode == ThemeMode.dark
+                      ? Icons.dark_mode
+                      : themeState.themeMode == ThemeMode.light
+                          ? Icons.light_mode
+                          : Icons.brightness_auto,
+                ),
+                tooltip: 'Theme',
+                onSelected: (ThemeMode mode) {
+                  context.read<ThemeBloc>().add(SetTheme(mode));
+                },
+                itemBuilder: (BuildContext context) => [
+                  PopupMenuItem<ThemeMode>(
+                    value: ThemeMode.light,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.light_mode,
+                          color: themeState.themeMode == ThemeMode.light
+                              ? Theme.of(context).colorScheme.primary
+                              : null,
+                        ),
+                        const SizedBox(width: 12),
+                        Text(
+                          'Light',
+                          style: TextStyle(
+                            fontWeight:
+                                themeState.themeMode == ThemeMode.light
+                                    ? FontWeight.bold
+                                    : FontWeight.normal,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem<ThemeMode>(
+                    value: ThemeMode.dark,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.dark_mode,
+                          color: themeState.themeMode == ThemeMode.dark
+                              ? Theme.of(context).colorScheme.primary
+                              : null,
+                        ),
+                        const SizedBox(width: 12),
+                        Text(
+                          'Dark',
+                          style: TextStyle(
+                            fontWeight: themeState.themeMode == ThemeMode.dark
+                                ? FontWeight.bold
+                                : FontWeight.normal,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem<ThemeMode>(
+                    value: ThemeMode.system,
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.brightness_auto,
+                          color: themeState.themeMode == ThemeMode.system
+                              ? Theme.of(context).colorScheme.primary
+                              : null,
+                        ),
+                        const SizedBox(width: 12),
+                        Text(
+                          'System Default',
+                          style: TextStyle(
+                            fontWeight:
+                                themeState.themeMode == ThemeMode.system
+                                    ? FontWeight.bold
+                                    : FontWeight.normal,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.account_balance_wallet),
             onPressed: () async {
