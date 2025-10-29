@@ -134,7 +134,7 @@ class DashboardWrapper extends StatelessWidget {
               builder: (context, state) {
                 String themeText = 'Light';
                 IconData themeIcon = Icons.light_mode;
-                
+
                 if (state.themeMode == ThemeMode.dark) {
                   themeText = 'Dark';
                   themeIcon = Icons.dark_mode;
@@ -142,7 +142,7 @@ class DashboardWrapper extends StatelessWidget {
                   themeText = 'System Default';
                   themeIcon = Icons.brightness_auto;
                 }
-                
+
                 return ListTile(
                   leading: Icon(themeIcon),
                   title: const Text('Theme'),

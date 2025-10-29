@@ -74,10 +74,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         Text(
                           'Light',
                           style: TextStyle(
-                            fontWeight:
-                                themeState.themeMode == ThemeMode.light
-                                    ? FontWeight.bold
-                                    : FontWeight.normal,
+                            fontWeight: themeState.themeMode == ThemeMode.light
+                                ? FontWeight.bold
+                                : FontWeight.normal,
                           ),
                         ),
                       ],
@@ -119,10 +118,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         Text(
                           'System Default',
                           style: TextStyle(
-                            fontWeight:
-                                themeState.themeMode == ThemeMode.system
-                                    ? FontWeight.bold
-                                    : FontWeight.normal,
+                            fontWeight: themeState.themeMode == ThemeMode.system
+                                ? FontWeight.bold
+                                : FontWeight.normal,
                           ),
                         ),
                       ],
